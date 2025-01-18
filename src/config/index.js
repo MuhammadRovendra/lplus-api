@@ -9,7 +9,7 @@ const mongoOptions = {
     autoIndex: false
 }
 
-const allowedOrigins = ['http://localhost:5173']
+const allowedOrigins = ['https://lplus-frontend.vercel.app']
 
 if (process.env.NODE_ENV === "development") {
     allowedOrigins.push(
