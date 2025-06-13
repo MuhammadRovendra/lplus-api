@@ -24,14 +24,14 @@ const login = async (input) => {
 	const IDUSER = data.IDUSER
 	const NAME = data.NAME
 	const EMAIL = data.EMAIL
-	// const ROLE = data.ROLE
+	const ROLE = data.ROLE
 	// const STATUS = data.STATUS
 
-	const accessToken = jwt.sign({ IDUSER, NAME, EMAIL }, process.env.ACCESS_TOKEN_SECRET, {
+	const accessToken = jwt.sign({ IDUSER, NAME, EMAIL, ROLE }, process.env.ACCESS_TOKEN_SECRET, {
 		expiresIn: '20s'
 	})
 
-	const refreshToken = jwt.sign({ IDUSER, NAME, EMAIL }, process.env.REFRESH_TOKEN_SECRET, {
+	const refreshToken = jwt.sign({ IDUSER, NAME, EMAIL, ROLE }, process.env.REFRESH_TOKEN_SECRET, {
 		expiresIn: '1d'
 	})
 

@@ -26,16 +26,14 @@ const verifyUser = (req, res, next) => {
   }
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decode) => {
-    if (err) {
-      return res.sendStatus(403)
-    }
+    console.log(decode)
     req.IDUSER = decode.IDUSER
     const cekUser = await modelUser.findOne({ IDUSER: decode.IDUSER })
 
     if (!cekUser) {
       return { ...requestResponse.unauthorized }
     }
-    if (cekUser.ROLE !== 'super admin') {
+    if (cekUser.ROLE !== 'Admin') {
       return { ...requestResponse.unauthorized }
     }
     next()

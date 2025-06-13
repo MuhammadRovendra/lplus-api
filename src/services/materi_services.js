@@ -8,12 +8,11 @@ const create = async (data) => {
 
 const getAll = async () => {
     return await model.aggregate([
-        { $sort: { CREATED_AT: -1 } },
         {
             $lookup: {
                 from: 'categories',
-                localField: 'CATEGORY',
-                foreignField: 'IDCATEGORY',
+                localField: 'KATEGORI',
+                foreignField: 'IDKATEGORI',
                 as: 'CATEGORY_DATA'
             },
         },

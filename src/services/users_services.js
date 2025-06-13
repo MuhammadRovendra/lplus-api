@@ -29,39 +29,40 @@ const create = async (data) => {
     const pass = data.PASSWORD
     const hashPassword = await bcrypt.hash(pass, saltRounds)
     data.PASSWORD = hashPassword
+    data.ROLE = 'user'
 
-    const dataMateri = await modelMateri.find()
-    const dataKategori = await modelKategori.find()
+    // const dataMateri = await modelMateri.find()
+    // const dataKategori = await modelKategori.find()
 
     // console.log(dataKategori)
     // console.log(dataMateri)
 
-    const progress = dataKategori.map((kategori) => {
-        const materiDalamKategori = dataMateri
-            .filter((materi) => materi.KATEGORI === kategori.IDKATEGORI)
-            .map((materi) => ({
-                IDMATERI: materi.IDMATERI,
-                STATUS: 0,
-                LIKE: false
-            }))
+    // const progress = dataKategori.map((kategori) => {
+    //     const materiDalamKategori = dataMateri
+    //         .filter((materi) => materi.KATEGORI === kategori.IDKATEGORI)
+    //         .map((materi) => ({
+    //             IDMATERI: materi.IDMATERI,
+    //             STATUS: 0,
+    //             LIKE: false
+    //         }))
 
-        console.log(materiDalamKategori)
-        return {
-            LEVEL: kategori.KATEGORI,
-            MATERI: materiDalamKategori
-        }
-    })
+    //     console.log(materiDalamKategori)
+    //     return {
+    //         LEVEL: kategori.KATEGORI,
+    //         MATERI: materiDalamKategori
+    //     }
+    // })
 
-    const dataProgressBelajar = {
-        IDNILAI: v4(),
-        IDUSER: data.IDUSER,
-        NILAI: 0,
-        PROGRES: progress
-    }
+    // const dataProgressBelajar = {
+    //     IDNILAI: v4(),
+    //     IDUSER: data.IDUSER,
+    //     NILAI: 0,
+    //     PROGRES: progress
+    // }
 
-    console.log(dataProgressBelajar)
+    // console.log(dataProgressBelajar)
     await model.create(data)
-    await modelNilai.create(dataProgressBelajar)
+    // await modelNilai.create(dataProgressBelajar)
     return { ...requestResponse.success }
 }
 

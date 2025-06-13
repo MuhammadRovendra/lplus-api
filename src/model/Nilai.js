@@ -10,19 +10,24 @@ const schema = new mongoose.Schema(
         IDUSER: {
             type: String
         },
+        IDKATEGORI: {
+            type: String
+        },
         NILAI: {
             type: Number
         },
-        PROGRES: [
+        LEVEL: {
+            type: String
+        },
+        RATING: {
+            type: Number,
+            default: 0
+        },
+        MATERI: [
             {
-                LEVEL: String,
-                MATERI: [
-                    {
-                        IDMATERI: String,
-                        STATUS: Number,
-                        LIKE: Boolean,
-                    }
-                ]
+                IDMATERI: String,
+                STATUS: Number,
+                LIKE: Boolean,
             }
         ],
         CREATED_AT: {

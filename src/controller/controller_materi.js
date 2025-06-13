@@ -22,8 +22,8 @@ const create = async (req, res) => {
         const { fields, files } = await parseForm(req, form)
         fields.IDMATERI = v4()
         let filename
-        if (files.IMAGES && files.IMAGES.length > 0) {
-            const imageFile = files.IMAGES[0];
+        if (files.IMAGE && files.IMAGE.length > 0) {
+            const imageFile = files.IMAGE[0];
             if (imageFile.originalFilename) {
                 filename = `${fields.IDMATERI}--${dateNow}.${fileService.getFileExtension(imageFile.originalFilename)}`;
                 const oldPath = imageFile.filepath;
@@ -55,7 +55,8 @@ const create = async (req, res) => {
 
                 } catch (error) {
                     console.error("Error uploading file or creating shared link:", error);
-                    return res.json({ msg: "Gagal" });
+                    response = { ...requestResponse.unprocessable_entity }
+                    return res.json(response);
                 }
             }
         }

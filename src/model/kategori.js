@@ -6,12 +6,27 @@ const schema = new mongoose.Schema(
         IDKATEGORI: {
             type: String,
         },
-        // NAMA_KATEGORI
         KATEGORI: {
             type: String
         },
         DESKRIPSI: {
             type: String
+        },
+        IMAGE: {
+            type: String
+        },
+        RATING: {
+            type: Number,
+            default: 0
+        },
+        STUDENTS: {
+            type: Number,
+            default: 0
+        },
+        STATUS: {
+            type: Number,
+            // belum publish
+            default: 0
         },
         CREATED_AT: {
             type: Date,
