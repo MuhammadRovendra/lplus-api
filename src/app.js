@@ -5,7 +5,8 @@ const mongo = require('./database/mongo')
 const logger = require('./utils/logger')
 const cookies = require('cookie-parser')
 const path = require('path')
-const { cors } = require('./config/index')
+const cors = require('cors')
+// const { cors } = require('./config/index')
 
 const connectionDatabase = async (retries = 5, delay = 3000) => {
     for (let i = 0; i < retries; i++) {
@@ -29,7 +30,7 @@ connectionDatabase()
 
 const app = express()
 
-app.use(cors)
+app.use(cors())
 app.use(cookies())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
